@@ -1,0 +1,269 @@
+.colors {
+    color: rgb(72, 208, 176);
+    color: rgb(251, 108, 108);
+    color: rgb(118, 189, 254);
+    color: rgb(255, 216, 111);
+}
+
+* {
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.mt40 {
+    margin-top: 40px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Vollständige Höhe des Viewports */
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 0, 0, 0.672),
+        rgba(255, 255, 0, 0.773)
+    ); /* Verlauf von Gelb links unten nach Rot rechts oben */
+    background-attachment: fixed; /* Hintergrund fixieren */
+}
+
+.headContent {
+    height: 120px;
+    border-bottom: 1px solid black;
+}
+
+/* .mainContent {
+    
+} */
+
+.gallery {
+    max-width: 1920px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.galleryCard {
+    width: 150px;
+    height: 200px;
+    border: 1px solid black;
+    border-radius: 25px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.galleryCard:hover {
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
+    transition: 0.3s;
+}
+
+.galleryCardHead {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.typeBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: 40px;
+    margin-top: 12px;
+}
+.typeBoxImg {
+    width: 65px;
+    height: 15px;
+    margin: 1px 7px;
+}
+
+.galleryCardImgBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.galleryCardImg {
+    width: 120px;
+    height: 120px;
+}
+
+.galleryCardImg:hover {
+    -webkit-transform: scale(1.55);
+    transform: scale(1.55);
+    transition: 0.5s;
+}
+
+/*  ----------- MainCard ---------- */
+
+.closeCard {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    margin-top: -40px;
+    margin-bottom: -20px;
+}
+.closeImg {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.switchCard {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+.pokemonMainCard {
+    position: absolute;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.pokemonCard {
+    width: 400px;
+    border: 1px solid black;
+    border-radius: 25px;
+}
+
+#pokedex {
+    height: 360px;
+    background-color: rgb(254, 126, 57);
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+}
+
+#pokemonName {
+    margin: 0px;
+}
+
+.pokemonImage {
+    display: flex;
+    align-items: center;
+}
+
+#cardImage {
+    margin-top: 0px;
+    width: 250px;
+    height: 250px;
+}
+
+.pokemonInfo {
+    background-color: white;
+    min-height: 300px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    margin-top: -80px;
+}
+
+/* ---------- InfoCard ---------- */
+
+.infoNav {
+    display: flex;
+    justify-content: center;
+    color: gray;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.infoPokemonNav {
+    margin-right: 40px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.statPokemonNav {
+    margin-left: 40px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.pokemonInformation {
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pokemonInformation p {
+    margin: 5px 70px 5px 70px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.rightInfoText {
+    font-weight: 700;
+    text-align: right;
+}
+
+.pokemonStats {
+    display: flex;
+    justify-content: center;
+    margin-right: 5px;
+}
+
+canvas {
+    max-width: 375px !important;
+}
+
+@media (min-width: 411px) {
+    canvas {
+        width: 375px !important;
+        height: 190px !important;
+    }
+    .pokemonInfo p {
+        margin: 5px 70px 5px 70px;
+        transition: 0.3s;
+    }
+}
+@media (max-width: 410px) {
+    canvas {
+        width: 350px !important;
+        height: 190px !important;
+    }
+    .pokemonInfo p {
+        margin: 5px 50px 5px 50px;
+        transition: 0.3s;
+    }
+}
+
+@media (min-width: 371px) {
+    canvas {
+        width: 350px !important;
+        height: 190px !important;
+    }
+}
+@media (max-width: 370px) {
+    canvas {
+        width: 300px !important;
+        height: 190px !important;
+    }
+    .pokemonInfo p {
+        margin: 5px 25px 5px 25px;
+        transition: 0.3s;
+    }
+    .infoPokemonNav {
+        margin-left: 16px;
+        margin-right: 30px;
+    }
+    .statPokemonNav {
+        margin-right: 16px;
+        margin-left: 30px;
+    }
+}

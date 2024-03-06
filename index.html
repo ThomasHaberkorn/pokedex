@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <script src="script.js"></script>
+    <script src="template.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="chart.js"></script>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <!-- <img src="img/Pokemon.png"> -->
+</head>
+
+<body onload="loadPokemon()">
+    <div class="mainGalery">
+        <div class="headContent"></div>
+        <div class="mainContent">
+            <div class="gallery" id="gallery"></div>
+        </div>
+    </div>
+    <div class="pokemonMainCard d-none" id="pokemonMainCard" onclick="closeCard()">
+        <div class="pokemonCard" onclick="event.stopPropagation();">
+            <div id="pokedex">
+                <div class="closeCard"><img src="img/close.png" class="closeImg" onclick="closeCard()"></div>
+                <h1 id="pokemonName">Name</h1>
+                <div id="pokemonImage" class="pokemonImage">
+                    <img src="img/left.png" class="previousCard switchCard" onclick="previousCard()">
+                    <img src="" id="cardImage">
+                    <img src="img/right.png" class="nextCard switchCard" onclick="nextCard()">
+                </div>
+
+            </div>
+            <div class="pokemonInfo" id="pokemonInfo">
+                <div class="infoNav" id="infoNav">
+                    <div class="infoPokemonNav mt40" id="infoPokemonNav" onclick="showPokeInfo()">Informationen</div>
+                    <div class="statPokemonNav mt40 " id="statPokemonNav" onclick="showPokeStats()">Statistik
+                    </div>
+                </div>
+                <div class="pokemonInformation" id="pokemonInformation"></div>
+                <div class="pokemonStats d-none" id="pokemonStats">
+                    <div>
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
