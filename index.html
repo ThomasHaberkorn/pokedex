@@ -15,21 +15,36 @@
 </head>
 
 <body onload="loadPokemon()">
+
+
+    <!-- <div class="loader d-none">
+        <div class="inner one"></div>
+        <div class="inner two"></div>
+        <div class="inner three"></div>
+    </div> -->
+
+
     <div class="mainGalery">
-        <div class="headContent"></div>
+        <div class="headContent">
+            <div class="headImg">
+                <img src="img/Pokemon.png" alt="">
+            </div>
+            <div class="headSearch"><input type="text" class="input" id="input" placeholder="Suche"></div>
+        </div>
         <div class="mainContent">
             <div class="gallery" id="gallery"></div>
+        </div>
+        <div class="nextPokemon" id="nextPokemon">
+            <button id="morePokemon" class="morePokemon" onclick="loadMorePokemon()">Mehr Pokemon laden</button>
         </div>
     </div>
     <div class="pokemonMainCard d-none" id="pokemonMainCard" onclick="closeCard()">
         <div class="pokemonCard" onclick="event.stopPropagation();">
-            <div id="pokedex">
+            <div class="pokedex" id="pokedex">
                 <div class="closeCard"><img src="img/close.png" class="closeImg" onclick="closeCard()"></div>
                 <h1 id="pokemonName">Name</h1>
                 <div id="pokemonImage" class="pokemonImage">
-                    <img src="img/left.png" class="previousCard switchCard" onclick="previousCard()">
-                    <img src="" id="cardImage">
-                    <img src="img/right.png" class="nextCard switchCard" onclick="nextCard()">
+
                 </div>
 
             </div>

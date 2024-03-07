@@ -15,16 +15,17 @@ async function loadPokemon() {
 
 async function renderGallery() {
     for (let i = 0; i < pokemonResults.length; i++) {
-        let pokename = pokemonResults[i]["name"];
+        // pokename = pokemonResults[i]["name"];
+        pokename = capFirst(currentPokemon["results"][i]["name"]);
         let pokeUrl = pokemonResults[i]["url"];
         let response = await fetch(pokeUrl);
         let GallyPokemon = await response.json();
         let GallyPokemonImg =
             GallyPokemon["sprites"]["other"]["home"]["front_default"];
-        // console.log(GallyPokemon);
         if (GallyPokemon["types"].length >= 2) {
             let GallyPokeType = GallyPokemon["types"][0]["type"]["name"];
             let GallyPokeType2 = GallyPokemon["types"][1]["type"]["name"];
+
             let imagePath = `img-Type/${GallyPokeType}IC_LA.png`;
             let imagePath2 = `img-Type/${GallyPokeType2}IC_LA.png`;
             document.getElementById("gallery").innerHTML += `
@@ -36,6 +37,11 @@ async function renderGallery() {
             <img src="${imagePath2}" class="typeBoxImg">
             </div>
             `;
+            gallyCardColor(
+                GallyPokemon["types"][0]["type"]["name"],
+                "galleryCard",
+                i
+            );
             // console.log(GallyPokeType);
         } else {
             let GallyPokeType = GallyPokemon["types"][0]["type"]["name"];
@@ -49,24 +55,18 @@ async function renderGallery() {
             
             </div>
             `;
+            gallyCardColor(
+                GallyPokemon["types"][0]["type"]["name"],
+                "galleryCard",
+                i
+            );
         }
     }
 }
 
-// async function loadPokemon() {
-//     let url = "https://pokeapi.co/api/v2/pokemon/charmander";
-//     let respone = await fetch(url);
-//     currentPokemon = await respone.json();
-
-//     console.log("Loaded Pokemon", currentPokemon);
-//     initVar();
-//     renderPokemonHeadCard();
-//     renderChart();
-//     renderPokemonInfoCard(name, type, size, weight, moveOne, moveTwo);
-// }
-
 async function openMainCard(i) {
     document.getElementById("pokemonMainCard").classList.remove("d-none");
+    document.getElementById("pokedex").classList = "";
     let charUrl = currentPokemon["results"][i]["url"];
     let charResponse = await fetch(charUrl);
     currentChar = await charResponse.json();
@@ -78,10 +78,14 @@ async function openMainCard(i) {
 }
 
 function renderPokemonHeadCard(i) {
-    document.getElementById("pokemonName").innerHTML =
-        currentPokemon["results"][i]["name"];
-    document.getElementById("cardImage").src =
-        currentChar["sprites"]["other"]["home"]["front_default"];
+    let name = capFirst(currentPokemon["results"][i]["name"]);
+    document.getElementById("pokemonName").innerHTML = name;
+    document.getElementById("pokemonImage").innerHTML = `
+        <img src="img/left.png" class="previousCard switchCard" onclick="previousCard(${i})">
+        <img src="${currentChar["sprites"]["other"]["home"]["front_default"]}" id="cardImage">
+        <img src="img/right.png" class="nextCard switchCard" onclick="nextCard(${i})">
+        `;
+    CardColor(currentChar["types"][0]["type"]["name"], "pokedex");
 }
 
 function renderPokemonInfoCard(i) {
@@ -106,8 +110,93 @@ function closeCard() {
 }
 
 function nextCard(i) {
+    document.getElementById("pokedex").classList = "";
+    if (i >= pokemonResults.length - 1) {
+        i = -1;
+    }
     i++;
     closeChart();
-    renderPokemonHeadCard(i);
-    renderPokemonInfoCard(i);
+    openMainCard(i);
 }
+
+function previousCard(i) {
+    document.getElementById("pokedex").classList = "";
+    if (i == 0) {
+        i = pokemonResults.length - 1;
+        closeChart();
+        openMainCard(i);
+    } else {
+        i--;
+        closeChart();
+        openMainCard(i);
+    }
+}
+
+async function loadMorePokemon() {
+    console.log(nextPage);
+    let nextResponse = await fetch(nextPage);
+    let nextCurrendPokemon = await nextResponse.json();
+    nextCurrendPokemonResult = nextCurrendPokemon["results"];
+    pushNextPokemon();
+    console.log(nextCurrendPokemon);
+    // console.log(pokemonResults);
+    document.getElementById("gallery").innerHTML = "";
+    renderGallery();
+    nextPage = nextCurrendPokemon["next"];
+    console.log(nextPage);
+}
+
+function pushNextPokemon() {
+    for (let i = 0; i < nextCurrendPokemonResult.length; i++) {
+        const nextPoke = nextCurrendPokemonResult[i];
+        pokemonResults.push(nextPoke);
+    }
+}
+
+// -------- input - mal schauen
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("input").addEventListener("input", performSearch);
+
+    function performSearch() {
+        if (this.value.length < 3) return;
+        // search code
+    }
+});
+
+// --------- kleinbuchstaben zu groß
+function capFirst(s) {
+    return s[0].toUpperCase() + s.slice(1);
+}
+
+// Listener für Eingabefeld Suchfuntkion
+// document.getElementById('pokemonSearchInput').addEventListener('input', function () {
+//     const searchQuery = this.value.toLowerCase();
+//     const pokemonItems = document.querySelectorAll('.pokemon-item');
+
+//     pokemonItems.forEach(function (item) {
+//         const pokemonName = item.textContent.toLowerCase();
+//         if (pokemonName.includes(searchQuery)) {
+//             item.style.display = '';
+//         } else {
+//             item.style.display = 'none';
+//         }
+//     });
+// });
+
+// document.getElementById('prevPokemon').addEventListener('click', loadPreviousPokemon);
+// document.getElementById('nextPokemon').addEventListener('click', loadNextPokemon);
+// buttons.forEach(button => {
+//     button.addEventListener('click', toggleActiveState);
+// });
+
+// document.getElementById('loadMore').addEventListener('click', function () {
+//     loadInitialPokemons(true);
+// });
+
+// window.onclick = function (event) {
+//     let modal = document.getElementById('pokemonModal');
+//     if (event.target == modal) {
+//         closeModal();
+//     }
+// }

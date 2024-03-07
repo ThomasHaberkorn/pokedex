@@ -1,5 +1,7 @@
 let currentPokemon;
+let nextCurrendPokemonResult;
 let allPokemon;
+let pokename;
 let pokemonResults;
 let currentChar;
 let name;
@@ -77,5 +79,86 @@ function closeChart() {
         if (chartInstance) {
             chartInstance.destroy();
         }
+    }
+}
+
+function gallyCardColor(type, target, index) {
+    const galleryCard = document.getElementById(`${target}(${index})`);
+    if (type === "bug") {
+        galleryCard.classList.add("bug");
+    } else if (type === "dark") {
+        galleryCard.classList.add("dark");
+    } else if (type === "dragon") {
+        galleryCard.classList.add("dragon");
+    } else if (type === "electric") {
+        galleryCard.classList.add("electric");
+    } else if (type === "fairy") {
+        galleryCard.classList.add("fairy");
+    } else if (type === "fighting") {
+        galleryCard.classList.add("fighting");
+    } else if (type === "fire") {
+        galleryCard.classList.add("fire");
+    } else if (type === "flying") {
+        galleryCard.classList.add("flying");
+    } else if (type === "ghost") {
+        galleryCard.classList.add("ghost");
+    } else if (type === "grass") {
+        galleryCard.classList.add("grass");
+    } else if (type === "ground") {
+        galleryCard.classList.add("ground");
+    } else if (type === "ice") {
+        galleryCard.classList.add("ice");
+    } else if (type === "normal") {
+        galleryCard.classList.add("normal");
+    } else if (type === "poison") {
+        galleryCard.classList.add("poison");
+    } else if (type === "psychic") {
+        galleryCard.classList.add("psychic");
+    } else if (type === "rock") {
+        galleryCard.classList.add("rock");
+    } else if (type === "steel") {
+        galleryCard.classList.add("steel");
+    } else if (type === "water") {
+        galleryCard.classList.add("water");
+    }
+}
+function CardColor(type, target) {
+    const galleryCard = document.getElementById(`${target}`);
+    if (type === "bug") {
+        galleryCard.classList.add("bug");
+    } else if (type === "dark") {
+        galleryCard.classList.add("dark");
+    } else if (type === "dragon") {
+        galleryCard.classList.add("dragon");
+    } else if (type === "electric") {
+        galleryCard.classList.add("electric");
+    } else if (type === "fairy") {
+        galleryCard.classList.add("fairy");
+    } else if (type === "fighting") {
+        galleryCard.classList.add("fighting");
+    } else if (type === "fire") {
+        galleryCard.classList.add("fire");
+    } else if (type === "flying") {
+        galleryCard.classList.add("flying");
+    } else if (type === "ghost") {
+        galleryCard.classList.add("ghost");
+    } else if (type === "grass") {
+        galleryCard.classList.add("grass");
+    } else if (type === "ground") {
+        galleryCard.classList.add("ground");
+    } else if (type === "ice") {
+        galleryCard.classList.add("ice");
+    } else if (type === "normal") {
+        galleryCard.classList.add("normal");
+    } else if (type === "poison") {
+        galleryCard.classList.add("poison");
+    } else if (type === "psychic") {
+        galleryCard.classList.add("psychic");
+    } else if (type === "rock") {
+        galleryCard.classList.add("rock");
+    } else if (type === "steel") {
+        galleryCard.classList.add("steel");
+    } else if (type === "water") {
+        galleryCard.classList.add("water");
     }
 }
