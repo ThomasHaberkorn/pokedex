@@ -29,7 +29,10 @@
             <div class="headImg">
                 <img src="img/Pokemon.png" alt="">
             </div>
-            <div class="headSearch"><input type="text" class="input" id="input" placeholder="Suche"></div>
+            <div class="headSearch">
+                <!-- <input type="text" class="input" id="input" placeholder="Suche"> -->
+                <input oninput="filterPokemon()" type="text" id="input" class="input" placeholder="Search Pokémon">
+            </div>
         </div>
         <div class="mainContent">
             <div class="gallery" id="gallery"></div>
