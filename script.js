@@ -1,7 +1,7 @@
 let pokemons = [];
 let offset = "";
 pokemonResults = "";
-let mainUrl = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=20";
+let mainUrl = "https://pokeapi.co/api/v2/pokemon?offset=20";
 
 async function loadPokemon() {
     let respone = await fetch(mainUrl);
@@ -9,9 +9,10 @@ async function loadPokemon() {
     pokemons = currentPokemon["results"];
     nextPage = currentPokemon["next"];
     bufferPokemons();
-    renderGalleryTest();
+    await renderGalleryTest();
 }
 
+// Puffert die nächsten 20 Pokemon ins Array, stellt sie aber noch nicht dar
 async function bufferPokemons() {
     let respone = await fetch(nextPage);
     currentPokemon = await respone.json();
@@ -24,11 +25,12 @@ async function bufferPokemons() {
     nextPage = currentPokemon["next"];
 }
 
+// lädt die nächsten 20 Pokemon in die Gallerie und puffert wieder die Nachfolgenden 20 Pokemon ins Array
 async function loadMorePokemon() {
     console.log("1", nextPage);
     for (i = pokemons.length - 20; i < pokemons.length; i++) {
         let poke = pokemons[i];
-        checkTypeLength(poke, i);
+        await checkTypeLength(poke, i);
     }
     let respone = await fetch(nextPage);
     currentPokemon = await respone.json();
@@ -41,9 +43,9 @@ async function loadMorePokemon() {
     console.log("2", nextPage);
 }
 
-function renderMorePokeToGallery() {
+async function renderMorePokeToGallery() {
     for (i = pokemons.length - 20; i < pokemons.lengt; i++) {
-        checkTypeLength();
+        await checkTypeLength();
     }
 }
 
@@ -60,13 +62,14 @@ async function checkTypeLength(a, index) {
     let respone = await fetch(checkUrl);
     currentPokemon = await respone.json();
     if (currentPokemon["types"].length >= 2) {
-        renderDoubleTypes(i);
+        await renderDoubleTypes(i);
     } else {
-        renderSingleTypes(i);
+        await renderSingleTypes(i);
     }
 }
 
-function renderDoubleTypes(index) {
+// rendert Pokemon mit 2 Typen in die Gallerie
+async function renderDoubleTypes(index) {
     initVar();
     let i = index;
     name = capFirst(currentPokemon["name"]);
@@ -81,7 +84,8 @@ function renderDoubleTypes(index) {
                 `;
 }
 
-function renderSingleTypes(index) {
+// rendert Pokemon mit einem Typ in die Gallerie
+async function renderSingleTypes(index) {
     let i = index;
     initVar();
     name = capFirst(currentPokemon["name"]);
@@ -95,6 +99,7 @@ function renderSingleTypes(index) {
                 `;
 }
 
+// öffnet und rendert eine Pokemon-Karte
 async function openMainCard(i) {
     document.getElementById("pokemonMainCard").classList.remove("d-none");
     document.getElementById("pokedex").classList = "";
@@ -104,6 +109,8 @@ async function openMainCard(i) {
     console.log(currentPokemon);
     initVar();
     renderPokemonHeadCard(i);
+
+    // rendert den Infoteil der Pokemon-Karte
     if (currentPokemon["types"].length >= 2) {
         document.getElementById("pokemonInformation").innerHTML =
             renderPokemonInfoCardDoubleTemp(i);
@@ -111,9 +118,12 @@ async function openMainCard(i) {
         document.getElementById("pokemonInformation").innerHTML =
             renderPokemonInfoCardTemp(i);
     }
+
+    // initialisiert das Chart
     renderChart();
 }
 
+// rendert den oberen Teil der Pokemon-Karte
 function renderPokemonHeadCard(i) {
     name = capFirst(currentPokemon["name"]);
     document.getElementById("pokemonName").innerHTML = name;
@@ -150,7 +160,7 @@ function previousCard(i) {
     }
 }
 
-// // -------- input - mal schauen
+// // -------- Pokemon-Suche
 let pokemonCopy = "";
 function filterPokemon() {
     let input = document.getElementById("input").value;

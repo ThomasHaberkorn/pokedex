@@ -28,25 +28,6 @@ let GallyPokemonImg;
 let imagePath;
 let imagePath2;
 
-let bug = "src='img/Bug_IC_LA.png'";
-let dark = "src='img/Dark_IC_LA.png'";
-let dragon = "src='img/Dragon_IC_LA.png'";
-let electric = "src='img/Electric_IC_LA.png'";
-let fairy = "src='img/Fairy_IC_LA.png'";
-let fighting = "src='img/Fighting_IC_LA.png'";
-let fire = "src='img/Fire_IC_LA.png'";
-let flying = "src='img/Flying_IC_LA.png'";
-let ghost = "src='img/Ghost_IC_LA.png'";
-let grass = "src='img/Grass_IC_LA.png'";
-let ground = "src='img/Ground_IC_LA.png'";
-let ice = "src='img/Ice_IC_LA.png'";
-let normal = "src='img/Normal_IC_LA.png'";
-let poison = "src='img/Poison_IC_LA.png'";
-let psychic = "src='img/Psychic_IC_LA.png'";
-let rock = "src='img/Rock_IC_LA.png'";
-let steel = "src='img/Steel_IC_LA.png'";
-let water = "src='img/Water_IC_LA.png'";
-
 function initVar() {
     name = currentPokemon["name"];
     type1 = currentPokemon["types"][0]["type"]["name"];
@@ -56,7 +37,11 @@ function initVar() {
     size = currentPokemon["height"];
     weight = currentPokemon["weight"];
     moveOne = currentPokemon["moves"][0]["move"]["name"];
-    moveTwo = currentPokemon["moves"][1]["move"]["name"];
+    if (currentPokemon["moves"].length > 1) {
+        moveTwo = currentPokemon["moves"][1]["move"]["name"];
+    } else {
+        moveTwo = "none";
+    }
     statHP = currentPokemon["stats"][0]["stat"]["name"];
     statATT = currentPokemon["stats"][1]["stat"]["name"];
     statDEF = currentPokemon["stats"][2]["stat"]["name"];

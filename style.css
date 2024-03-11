@@ -25,79 +25,9 @@ body {
     background-image: url(img/wallpaper1.jpg);
     background-position: center center;
     background-size: cover;
+    background-repeat: no-repeat;
     background-attachment: fixed;
-    /* background-image: radial-gradient(
-        circle farthest-corner at center,
-        #3c4b57 0%,
-        #1c262b 100%
-    ); */
 }
-
-/* .loader {
-    position: absolute;
-    top: calc(50% - 32px);
-    left: calc(50% - 32px);
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    perspective: 800px;
-}
-
-.inner {
-    position: absolute;
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-}
-
-.inner.one {
-    left: 0%;
-    top: 0%;
-    animation: rotate-one 1s linear infinite;
-    border-bottom: 3px solid #5f5fff;
-}
-
-.inner.two {
-    right: 0%;
-    top: 0%;
-    animation: rotate-two 1s linear infinite;
-    border-right: 3px solid #5f5fff;
-}
-
-.inner.three {
-    right: 0%;
-    bottom: 0%;
-    animation: rotate-three 1s linear infinite;
-    border-top: 3px solid #5f5fff;
-}
-
-@keyframes rotate-one {
-    0% {
-        transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
-    }
-    100% {
-        transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
-    }
-}
-
-@keyframes rotate-two {
-    0% {
-        transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
-    }
-    100% {
-        transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
-    }
-}
-
-@keyframes rotate-three {
-    0% {
-        transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
-    }
-    100% {
-        transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
-    }
-} */
 
 .headContent {
     height: 120px;
@@ -131,7 +61,6 @@ body {
 .input::placeholder {
     background-color: transparent;
     color: gray;
-    /* padding-left: 10px; */
     font-size: 20px;
 }
 
@@ -139,9 +68,7 @@ body {
     outline: none;
 }
 
-/* .mainContent {
-    
-} */
+/* ------------  Gallery  ------------- */
 
 .gallery {
     max-width: 1920px;
@@ -246,7 +173,7 @@ body {
     left: 0;
     right: 0;
     height: 100vh;
-    width: 97vw;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -343,6 +270,24 @@ canvas {
     max-width: 375px !important;
 }
 
+@media (max-width: 600px) {
+    .headContent {
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+    .headImg img {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+    .headContent {
+        margin-bottom: 30px;
+    }
+    .input {
+        text-align: center;
+        padding-left: 0;
+        margin-right: -10px;
+    }
+}
 @media (max-width: 440px) {
     .pokemonCard {
         width: 360px;
@@ -403,60 +348,4 @@ canvas {
     .pokemonImage {
         margin-top: 30px;
     }
-}
-
-/* --------- Farben für Pokemon-Klassen --------- */
-.bug {
-    background-color: #9acd32;
-}
-.dark {
-    background-color: #2f4f4f;
-}
-.dragon {
-    background-color: #4169e1;
-}
-.electric {
-    background-color: #ffd700;
-}
-.fairy {
-    background-color: #ff69b4;
-}
-.fighting {
-    background-color: #8b4513;
-}
-.fire {
-    background-color: #fe5f25;
-}
-.flying {
-    background-color: #87ceeb;
-}
-.ghost {
-    background-color: #483d8b;
-}
-.grass {
-    background-color: #32cd32;
-}
-.ground {
-    background-color: #d2b48c;
-}
-.ice {
-    background-color: #87cefa;
-}
-.normal {
-    background-color: #a9a9a9;
-}
-.poison {
-    background-color: #9932cc;
-}
-.psychic {
-    background-color: #ff1493;
-}
-.rock {
-    background-color: #a0522d;
-}
-.steel {
-    background-color: #b0c4de;
-}
-.water {
-    background-color: #4169e1;
 }
