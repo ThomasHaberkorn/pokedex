@@ -1,8 +1,15 @@
-.colors {
-    color: rgb(72, 208, 176);
-    color: rgb(251, 108, 108);
-    color: rgb(118, 189, 254);
-    color: rgb(255, 216, 111);
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+#progressbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(to top, #fcb045, #fd1d1d, #833ab4);
 }
 
 * {
@@ -28,13 +35,17 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
-
-.headContent {
+.headMain {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
     height: 120px;
-    border-bottom: 1px solid black;
+    margin-bottom: 10px;
 }
 
 .headContent {
+    max-width: 1920px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -57,6 +68,7 @@ body {
     color: white;
     font-size: 20px;
     padding-left: 10px;
+    margin-right: 15px;
 }
 .input::placeholder {
     background-color: transparent;
@@ -70,6 +82,10 @@ body {
 
 /* ------------  Gallery  ------------- */
 
+.mainContent {
+    display: flex;
+    justify-content: center;
+}
 .gallery {
     max-width: 1920px;
     display: flex;
@@ -271,13 +287,17 @@ canvas {
 }
 
 @media (max-width: 600px) {
+    .headMain {
+        margin-bottom: 40px;
+    }
     .headContent {
         flex-direction: column;
-        margin-bottom: 20px;
+        margin-bottom: 0px;
     }
     .headImg img {
         margin-left: 0;
         margin-top: 20px;
+        margin-bottom: 5px;
     }
     .headContent {
         margin-bottom: 30px;
@@ -285,7 +305,7 @@ canvas {
     .input {
         text-align: center;
         padding-left: 0;
-        margin-right: -10px;
+        margin-right: -25px;
     }
 }
 @media (max-width: 440px) {

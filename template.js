@@ -102,7 +102,8 @@ function renderPokemonHeadCardSingleColor(i) {
     document.getElementById(
         "pokedex"
     ).style.background = `linear-gradient(135deg, ${colors[type1]} 40%, ${colors[type1]} 60%)`;
-    return `<img src="img/left.png" class="previousCard switchCard" onclick="previousCard(${i})">
+    return `
+        <img src="img/left.png" class="previousCard switchCard" onclick="previousCard(${i})">
         <img src="${currentPokemon["sprites"]["other"]["home"]["front_default"]}" id="cardImage">
         <img src="img/right.png" class="nextCard switchCard" onclick="nextCard(${i})">
         `;
@@ -112,10 +113,34 @@ function renderPokemonHeadCardDoubleColor(i) {
     document.getElementById(
         "pokedex"
     ).style.background = `linear-gradient(135deg, ${colors[type1]} 40%, ${colors[type2]} 60%)`;
-    return `<img src="img/left.png" class="previousCard switchCard" onclick="previousCard(${i})">
+    return `
+        <img src="img/left.png" class="previousCard switchCard" onclick="previousCard(${i})">
         <img src="${currentPokemon["sprites"]["other"]["home"]["front_default"]}" id="cardImage">
         <img src="img/right.png" class="nextCard switchCard" onclick="nextCard(${i})">
-        `;
+    `;
+}
+
+function renderDoubleTypeTemp(i) {
+    return `
+    <div class="galleryCard" id="galleryCard(${i})" style="background: linear-gradient(135deg, ${colors[type1]} 40%, ${colors[type2]} 60%)" onclick="openMainCard(${i})">
+    <div class="galleryCardHead">${name}</div>
+    <div class="galleryCardImgBox"><img src="${GallyPokemonImg}" class="galleryCardImg"></div>
+    <div class="typeBox" id="typeBox">
+        <img src="${imagePath}" class="typeBoxImg">
+        <img src="${imagePath2}" class="typeBoxImg">
+    </div>
+    `;
+}
+
+function renderSingleTypesTemp(i) {
+    return `
+    <div class="galleryCard" id="galleryCard(${i})" style="background-color: ${colors[type1]}" onclick="openMainCard(${i})">
+    <div class="galleryCardHead">${name}</div>
+    <div class="galleryCardImgBox"><img src="${GallyPokemonImg}" class="galleryCardImg"></div>
+    <div class="typeBox" id="typeBox">
+        <img src="${imagePath}" class="typeBoxImg">
+    </div>
+    `;
 }
 
 function closeChart() {
@@ -125,6 +150,28 @@ function closeChart() {
         if (chartInstance) {
             chartInstance.destroy();
         }
+    }
+}
+
+function filterPokemonInput(input) {
+    emptyGally();
+    let inputPoke = input.toLowerCase();
+    pokemonCopy = pokemons.slice();
+    pokemonResults.splice(0, pokemonResults.length);
+
+    for (let i = 0; i < pokemonCopy.length; i++) {
+        if (pokemonCopy[i]["name"].includes(inputPoke)) {
+            pokemonResults.push(pokemonCopy[i]);
+        }
+    }
+    renderGallerySearch(pokemonResults);
+}
+
+function renderGallerySearch(a) {
+    a = pokemonResults;
+    for (i = 0; i < pokemonResults.length; i++) {
+        let poke = pokemonResults[i];
+        checkTypeLength(poke, i);
     }
 }
 

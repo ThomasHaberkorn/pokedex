@@ -5,26 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="script.js"></script>
     <script src="template.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="chart.js"></script>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body onload="loadPokemon()">
 
-
+    <div id="progressbar"></div>
 
 
     <div class="mainGalery">
-        <div class="headContent">
-            <div class="headImg">
-                <img src="img/Pokemon.png" alt="">
-            </div>
-            <div class="headSearch">
-                <input oninput="filterPokemon()" type="text" id="input" class="input" placeholder="Search Pokémon">
+        <div class="headMain">
+            <div class="headContent">
+                <div class="headImg">
+                    <img src="img/Pokemon.png" alt="">
+                </div>
+                <div class="headSearch">
+                    <input oninput="filterPokemon()" type="text" id="input" class="input" placeholder="Search Pokémon">
+                </div>
             </div>
         </div>
         <div class="mainContent">
@@ -59,6 +63,7 @@
             </div>
         </div>
     </div>
+
 
 </body>
 
